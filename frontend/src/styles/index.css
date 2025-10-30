@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+/* small utility */
+.container { max-width: 1100px; }
+
+:root{
+	--color-bg: #f8fafc;
+	--color-primary: #0ea5e9; /* cool blue */
+	--color-primary-dark: #0369a1;
+	--color-muted: #6b7280;
+}
+
+/* subtle card hover */
+.card-hover{ transition: transform .18s ease, box-shadow .18s ease; }
+.card-hover:hover{ transform: translateY(-6px); box-shadow: 0 10px 20px rgba(2,6,23,0.08); }
+
+/* fade and pop animations */
+.fade-in{ animation: fadeIn .32s ease both; }
+@keyframes fadeIn{ from{ opacity: 0; transform: translateY(6px) } to{ opacity:1; transform: translateY(0) } }
+
+.img-smooth{ transition: transform .25s ease, opacity .25s ease }
+.img-smooth:hover{ transform: scale(1.02) }
+
+.skeleton{ background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.12) 37%, rgba(255,255,255,0.06) 63%); background-size: 400% 100%; animation: shimmer 1.2s linear infinite; }
+@keyframes shimmer { 0%{ background-position:200% 0 } 100%{ background-position:-200% 0 } }
