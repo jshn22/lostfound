@@ -15,4 +15,8 @@
     "*.css": "postcss"
   },
   "editor.formatOnSave": true
+  ,"files.exclude": {
+    "**/node_modules": true,
+    "**/.env": true
+  }
 }

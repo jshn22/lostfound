@@ -1,4 +1,13 @@
 {
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact"],
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.env": true,
+    "**/uploads": true
+  }
+}
+{
   "files.associations": {
     "*.css": "postcss"
   },
