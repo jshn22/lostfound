@@ -91,13 +91,6 @@ Protected endpoints require the header: `Authorization: Bearer <token>`
 
 ---
 
-## 🖼️ Screenshots
-Place screenshots in `frontend/public/screenshots` and reference them here. Example:
-
-![Home screenshot](/frontend/public/screenshots/home.png)
-
----
-
 ## 🧾 License
 MIT — see the `LICENSE` file for full details.
 
