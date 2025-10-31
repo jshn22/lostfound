@@ -52,13 +52,7 @@ router.post('/', auth, upload.single('image'),
 
       if (req.file) {
         if (cloudinaryEnabled) {
-          // upload buffer to cloudinary
-          const result = await cloudinary.uploader.upload_stream({ resource_type: 'image' }, (error, result) => {
-            if (error) throw error;
-            return result;
-          });
-          // Note: using upload_stream with promises requires a wrapper; fallback to upload via temporary file
-          // Simple fallback: write buffer to disk and use existing logic
+          // Write buffer to disk then upload to Cloudinary (simple and reliable)
           const dir = './uploads/';
           if (!fs.existsSync(dir)) fs.mkdirSync(dir);
           const filename = Date.now() + '-' + Math.round(Math.random() * 1e9) + '-' + req.file.originalname;

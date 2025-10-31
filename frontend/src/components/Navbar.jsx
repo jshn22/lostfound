@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   const handleLogout = () => {
     logout()
@@ -12,21 +14,25 @@ export default function Navbar() {
   }
 
   return (
-    <header className="bg-white shadow">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link to="/" className="text-xl font-semibold text-primary">Lost & Found Hub</Link>
-        <div className="hidden md:flex items-center space-x-4">
-          <Link to="/" className="text-gray-700 hover:text-primary">Home</Link>
-          <Link to="/add" className="text-gray-700 hover:text-primary">Add Item</Link>
+    <header className="bg-white shadow w-full">
+      <div className="w-full flex items-center justify-between px-4 py-4">
+        <div className="flex items-center">
+          <Link to="/" aria-label="Lost & Found Hub" className="flex items-center">
+            <span className="text-xl md:text-2xl font-bold text-gray-900">Lost & Found Hub</span>
+          </Link>
+        </div>
+        <div className="hidden md:flex items-center space-x-6">
+          {renderNavLink('/', 'Home', isHome)}
+          {renderNavLink('/add', 'Add Item', location.pathname === '/add')}
           {user ? (
             <>
-              <Link to="/profile" className="text-gray-700 hover:text-primary">Profile</Link>
+              {renderNavLink('/profile', 'Profile', location.pathname === '/profile')}
               <button onClick={handleLogout} className="ml-2 px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark">Logout</button>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-gray-700 hover:text-primary">Login</Link>
-              <Link to="/register" className="ml-2 px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark">Register</Link>
+              {renderNavLink('/login', 'Login', location.pathname === '/login')}
+              <Link to="/register" className={`ml-2 px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark ${isHome ? 'animate-pulse' : ''}`}>Register</Link>
             </>
           )}
         </div>
@@ -60,6 +66,15 @@ function MobileMenu({ user, onLogout }){
           )}
         </div>
       )}
+    </div>
+  )
+}
+
+function renderNavLink(to, label, active){
+  return (
+    <div className="relative">
+      <Link to={to} className={`text-gray-700 hover:text-primary px-1`}>{label}</Link>
+      <div className="absolute left-0 -bottom-1 h-0.5 bg-primary transition-all duration-300" style={{width: active ? '100%' : '0%'}} />
     </div>
   )
 }

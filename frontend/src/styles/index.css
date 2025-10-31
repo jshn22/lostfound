@@ -22,6 +22,10 @@ html, body, #root { height: 100%; }
 .fade-in{ animation: fadeIn .32s ease both; }
 @keyframes fadeIn{ from{ opacity: 0; transform: translateY(6px) } to{ opacity:1; transform: translateY(0) } }
 
+/* logo entrance animation */
+.logo-entrance{ animation: logoEnter .45s cubic-bezier(.2,.9,.3,1) both; }
+@keyframes logoEnter{ from{ opacity:0; transform: translateY(-8px) scale(.98) } to{ opacity:1; transform: translateY(0) scale(1) } }
+
 .img-smooth{ transition: transform .25s ease, opacity .25s ease }
 .img-smooth:hover{ transform: scale(1.02) }
 
