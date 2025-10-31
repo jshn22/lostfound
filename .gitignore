@@ -44,3 +44,7 @@ Thumbs.db
 /frontend/public/icons/
 /frontend/public/favicon-*.png
 /frontend/public/favicon.ico
+
+node_modules/
+frontend/node_modules/
+backend/node_modules/
